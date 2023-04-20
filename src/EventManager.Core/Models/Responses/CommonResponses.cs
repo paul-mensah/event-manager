@@ -69,7 +69,7 @@ public static class CommonResponses
         public static BaseResponse<EmptyResponse> DeletedResponse() =>
             new BaseResponse<EmptyResponse>
             {
-                Code = (int)HttpStatusCode.Created,
+                Code = (int)HttpStatusCode.OK,
                 Message = DefaultDeletedResponseMessage
             };
     }
