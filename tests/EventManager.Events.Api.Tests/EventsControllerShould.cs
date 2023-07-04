@@ -1,4 +1,5 @@
-﻿using EventManager.Core.Models.Requests;
+﻿using EventManager.Core.Domain.Events;
+using EventManager.Core.Models.Requests;
 using EventManager.Core.Models.Responses;
 using EventManager.Events.Api.Tests.Setup;
 using EventsManager.Events.Api.Controllers;
@@ -26,7 +27,7 @@ public class EventsControllerShould : IClassFixture<TestFixture>
     public async Task Return_200OK_Response_When_An_Id_Of_An_Existing_Event_Is_Provided()
     {
         // Arrange
-        var testEvent = EventFactory.GenerateEvent();
+        Event testEvent = EventFactory.GenerateEvent();
         var mockResponse = CommonResponses.SuccessResponse
             .OkResponse(testEvent.Adapt<EventResponse>());
         
@@ -34,7 +35,7 @@ public class EventsControllerShould : IClassFixture<TestFixture>
             .ReturnsAsync(mockResponse);
         
         // Act
-        var response = (ObjectResult)await _eventsController.GetEventById(testEvent.Id);
+        ObjectResult? response = (ObjectResult)await _eventsController.GetEventById(testEvent.Id);
         var parsedResponse = response.Value as BaseResponse<EventResponse>;
 
         // Assert
@@ -55,7 +56,7 @@ public class EventsControllerShould : IClassFixture<TestFixture>
             .ReturnsAsync(mockResponse);
         
         // Act
-        var response = (ObjectResult)await _eventsController.GetEventById(Guid.NewGuid().ToString("N"));
+        ObjectResult? response = (ObjectResult)await _eventsController.GetEventById(Guid.NewGuid().ToString("N"));
         var parsedResponse = response.Value as BaseResponse<EventResponse>;
 
         // Assert
@@ -76,7 +77,7 @@ public class EventsControllerShould : IClassFixture<TestFixture>
             .ReturnsAsync(mockResponse);
         
         // Act
-        var response = (ObjectResult)await _eventsController.DeleteEventById(Guid.NewGuid().ToString("N"));
+        ObjectResult? response = (ObjectResult)await _eventsController.DeleteEventById(Guid.NewGuid().ToString("N"));
         var parsedResponse = response.Value as BaseResponse<EventResponse>;
 
         // Assert
@@ -97,7 +98,7 @@ public class EventsControllerShould : IClassFixture<TestFixture>
             .ReturnsAsync(mockResponse);
         
         // Act
-        var response = (ObjectResult)await _eventsController.DeleteEventById(Guid.NewGuid().ToString("N"));
+        ObjectResult? response = (ObjectResult)await _eventsController.DeleteEventById(Guid.NewGuid().ToString("N"));
         var parsedResponse = response.Value as BaseResponse<EventResponse>;
 
         // Assert
@@ -111,15 +112,15 @@ public class EventsControllerShould : IClassFixture<TestFixture>
     public async Task Return_201Created_Response_When_Correct_Event_Details_Are_Provided()
     {
         // Arrange
-        var eventRequest = EventFactory.GenerateEvent().Adapt<CreateEventRequest>();
+        CreateEventRequest eventRequest = EventFactory.GenerateEvent().Adapt<CreateEventRequest>();
         var mockResponse = CommonResponses.SuccessResponse
-            .CreatedResponse<EventResponse>(eventRequest.Adapt<EventResponse>());
+            .CreatedResponse(eventRequest.Adapt<EventResponse>());
         
         _eventServiceMock.Setup(x => x.CreateEvent(It.IsAny<CreateEventRequest>()))
             .ReturnsAsync(mockResponse);
         
         // Act
-        var response = (ObjectResult)await _eventsController.CreateEvent(eventRequest);
+        ObjectResult? response = (ObjectResult)await _eventsController.CreateEvent(eventRequest);
         var parsedResponse = response.Value as BaseResponse<EventResponse>;
 
         // Assert
@@ -142,7 +143,7 @@ public class EventsControllerShould : IClassFixture<TestFixture>
     public async Task Return_400BadRequest_Response_When_InCorrect_Event_Details_Are_Provided()
     {
         // Arrange
-        var eventRequest = new CreateEventRequest();
+        CreateEventRequest eventRequest = new CreateEventRequest();
 
         var mockResponse = CommonResponses.ErrorResponse
             .BadRequestResponse<EventResponse>(string.Empty);
@@ -151,7 +152,7 @@ public class EventsControllerShould : IClassFixture<TestFixture>
             .ReturnsAsync(mockResponse);
         
         // Act
-        var response = (ObjectResult)await _eventsController.CreateEvent(eventRequest);
+        ObjectResult? response = (ObjectResult)await _eventsController.CreateEvent(eventRequest);
         var parsedResponse = response.Value as BaseResponse<EventResponse>;
 
         // Assert

@@ -11,7 +11,7 @@ COPY ["src/EventManager.Data.Elasticsearch/EventManager.Data.Elasticsearch.cspro
 COPY ["src/EventManager.Data.Redis/EventManager.Data.Redis.csproj", "src/EventManager.Data.Redis/"]
 RUN dotnet restore "src/EventsManager.Events.Api/EventsManager.Events.Api.csproj"
 COPY . .
-WORKDIR "/src/src/EventsManager.Events.Api"
+WORKDIR "/src/EventsManager.Events.Api"
 RUN dotnet build "EventsManager.Events.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish

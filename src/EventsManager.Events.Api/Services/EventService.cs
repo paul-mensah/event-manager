@@ -3,6 +3,7 @@ using EventManager.Core.Models.Filters;
 using EventManager.Core.Models.Requests;
 using EventManager.Core.Models.Responses;
 using EventManager.Data.Elasticsearch.Services;
+using FluentValidation.Results;
 using Mapster;
 using Nest;
 using Newtonsoft.Json;
@@ -132,7 +133,7 @@ public sealed class EventService : IEventService
     {
         try
         {
-            var @event = await _elasticsearchService.GetByIdAsync<Event>(id);
+            Event @event = await _elasticsearchService.GetByIdAsync<Event>(id);
 
             return @event == null
                 ? CommonResponses.ErrorResponse.NotFoundErrorResponse<EventResponse>("Event not found")
@@ -166,14 +167,14 @@ public sealed class EventService : IEventService
     {
         try
         {
-            var validateResponse = await new CreateEventRequestValidator().ValidateAsync(request);
+            ValidationResult validateResponse = await new CreateEventRequestValidator().ValidateAsync(request);
 
             if (!validateResponse.IsValid)
             {
                 return CommonResponses.ErrorResponse.BadRequestResponse<EventResponse>("Provide all required inputs");
             }
 
-            var newEvent = request.Adapt<Event>();
+            Event newEvent = request.Adapt<Event>();
             bool isCreated = await _elasticsearchService.AddAsync(newEvent);
 
             return isCreated
@@ -193,14 +194,15 @@ public sealed class EventService : IEventService
     {
         try
         {
-            var @event = await _elasticsearchService.GetByIdAsync<Event>(id);
+            Event @event = await _elasticsearchService.GetByIdAsync<Event>(id);
 
             if (@event is null)
             {
                 return CommonResponses.ErrorResponse.NotFoundErrorResponse<EventResponse>("Event not found");
             }
 
-            bool userAlreadyAdded = @event.Participants.Any(x => x.Username.Equals(participant.Username));
+            bool userAlreadyAdded = @event.Participants.Any(x => x.Username.ToLower().Equals(participant.Username.ToLower()) || 
+                                                                 x.Email.ToLower().Equals(participant.Email.ToLower()));
 
             if (userAlreadyAdded)
             {
@@ -231,14 +233,14 @@ public sealed class EventService : IEventService
     {
         try
         {
-            var @event = await _elasticsearchService.GetByIdAsync<Event>(id);
+            Event @event = await _elasticsearchService.GetByIdAsync<Event>(id);
 
             if (@event is null)
             {
                 return CommonResponses.ErrorResponse.NotFoundErrorResponse<EventResponse>("Event not found");
             }
 
-            var eventParticipant = @event.Participants.FirstOrDefault(x => x.Username.Equals(username));
+            EventParticipant eventParticipant = @event.Participants.FirstOrDefault(x => x.Username.Equals(username));
 
             if (eventParticipant is null)
             {

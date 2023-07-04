@@ -41,7 +41,7 @@ public static class BuilderExtension
         application.UseCors(x => x
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .SetIsOriginAllowed(origin => true)
+            .SetIsOriginAllowed(o => true)
             .AllowCredentials());
 
         application.UseRouting();
@@ -59,8 +59,8 @@ public static class BuilderExtension
 
         try
         {
-            using var scope = serviceProvider.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDatabaseContext>();
+            using IServiceScope scope = serviceProvider.CreateScope();
+            ApplicationDatabaseContext dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDatabaseContext>();
         
             int pendingMigrations = (await dbContext.Database.GetPendingMigrationsAsync()).Count();
             

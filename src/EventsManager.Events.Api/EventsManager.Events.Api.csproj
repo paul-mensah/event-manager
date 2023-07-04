@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <NoWarn>$(NoWarn);1591</NoWarn>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <UserSecretsId>f7c55bd8-86b6-4c35-89c9-b3f5a2b5a335</UserSecretsId>
         <DockerfileContext>..\..</DockerfileContext>

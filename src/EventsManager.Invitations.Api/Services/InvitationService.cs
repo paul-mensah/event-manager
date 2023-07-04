@@ -7,6 +7,7 @@ using EventManager.Core.Repositories;
 using EventManager.Core.Services;
 using EventManager.Data.Redis.Models;
 using EventManager.Data.Redis.Services.Interfaces;
+using FluentValidation.Results;
 using Mapster;
 using Newtonsoft.Json;
 
@@ -37,7 +38,7 @@ public class InvitationService : IInvitationService
     {
         try
         {
-            var validationResult = await new EventInvitationRequestValidator().ValidateAsync(request);
+            ValidationResult validationResult = await new EventInvitationRequestValidator().ValidateAsync(request);
 
             if (!validationResult.IsValid)
             {
@@ -108,7 +109,7 @@ public class InvitationService : IInvitationService
     {
         try
         {
-            var eventInvitation = await _eventInvitationRepository.GetById(id);
+            EventInvitation eventInvitation = await _eventInvitationRepository.GetById(id);
 
             return eventInvitation != null
                 ? CommonResponses.SuccessResponse.OkResponse(eventInvitation.Adapt<EventInvitationResponse>())
@@ -125,7 +126,7 @@ public class InvitationService : IInvitationService
     {
         try
         {
-            var eventInvitation = await _eventInvitationRepository.GetById(id);
+            EventInvitation eventInvitation = await _eventInvitationRepository.GetById(id);
 
             if (eventInvitation is null)
             {
@@ -158,7 +159,7 @@ public class InvitationService : IInvitationService
     {
         try
         {
-            var eventInvitation = await _eventInvitationRepository.GetById(id);
+            EventInvitation eventInvitation = await _eventInvitationRepository.GetById(id);
 
             if (eventInvitation is null)
             {
@@ -218,7 +219,7 @@ public class InvitationService : IInvitationService
     {
         try
         {
-            var eventInvitation = await _eventInvitationRepository.GetById(id);
+            EventInvitation eventInvitation = await _eventInvitationRepository.GetById(id);
 
             if (eventInvitation is null)
             {
