@@ -5,6 +5,7 @@ using EventManager.Core.Models.Requests;
 using EventManager.Core.Models.Responses;
 using EventManager.Core.Repositories;
 using EventManager.Core.Services;
+using EventManager.Data.Redis.Extensions;
 using EventManager.Data.Redis.Models;
 using EventManager.Data.Redis.Services.Interfaces;
 using FluentValidation.Results;
@@ -47,8 +48,9 @@ public class InvitationService : IInvitationService
             }
 
             // Check if user has been invited awaiting approval
-            bool userAlreadyInvited = await _redisService.IsUserAlreadyInvited(request.Username, request.EventId);
-            
+            string userInvitationsKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(request.Username);
+            bool userAlreadyInvited = await _redisService.HashExistsAsync(userInvitationsKey, request.EventId);
+
             if (userAlreadyInvited)
             {
                 return CommonResponses.ErrorResponse
@@ -78,7 +80,7 @@ public class InvitationService : IInvitationService
             }
 
             // Create event invitation
-            var newEventInvitation = request.Adapt<EventInvitation>();
+            EventInvitation newEventInvitation = request.Adapt<EventInvitation>();
             newEventInvitation.Title = eventResponse.Data.Title;
             newEventInvitation.Description = eventResponse.Data.Description;
 
@@ -91,7 +93,10 @@ public class InvitationService : IInvitationService
             }
             
             // Cache new user invitation
-            await _redisService.CacheNewUserEventInvitation(newEventInvitation.Adapt<CachedEventInvitation>());
+            await _redisService.AddToHashSetAsync(
+                value: newEventInvitation.Adapt<CachedEventInvitation>(),
+                hashField: newEventInvitation.EventId,
+                key: userInvitationsKey);
 
             return CommonResponses.SuccessResponse
                 .CreatedResponse(newEventInvitation.Adapt<EventInvitationResponse>());
@@ -142,8 +147,10 @@ public class InvitationService : IInvitationService
             {
                 return CommonResponses.ErrorResponse.FailedDependencyErrorResponse<EventInvitationResponse>();
             }
-
-            await _redisService.DeleteInvitation(eventInvitation.Username, eventInvitation.EventId);
+            
+            // Delete invitation from hash set
+            string userInvitationKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(eventInvitation.Username);
+            await _redisService.DeleteFromHashSetAsync(userInvitationKey, eventInvitation.EventId);
 
             return CommonResponses.SuccessResponse
                 .OkResponse(eventInvitation.Adapt<EventInvitationResponse>(), "Declined successfully");
@@ -183,7 +190,9 @@ public class InvitationService : IInvitationService
                 return CommonResponses.ErrorResponse.FailedDependencyErrorResponse<EventInvitationResponse>();
             }
 
-            await _redisService.DeleteInvitation(eventInvitation.Username, eventInvitation.EventId);
+            // Delete invitation from cache
+            string userInvitationKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(eventInvitation.Username);
+            await _redisService.DeleteFromHashSetAsync(userInvitationKey, eventInvitation.EventId);
 
             // Get event details
             string eventApiBaseUrl = _configuration.GetValue<string>("EventsBaseUrl");
@@ -233,7 +242,9 @@ public class InvitationService : IInvitationService
                 return CommonResponses.ErrorResponse.FailedDependencyErrorResponse<EmptyResponse>();
             }
 
-            await _redisService.DeleteInvitation(eventInvitation.Username, eventInvitation.EventId);
+            // Delete invitation from cache
+            string userInvitationKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(eventInvitation.Username);
+            await _redisService.DeleteFromHashSetAsync(userInvitationKey, eventInvitation.EventId);
 
             return CommonResponses.SuccessResponse.DeletedResponse();
         }
@@ -248,7 +259,9 @@ public class InvitationService : IInvitationService
     {
         try
         {
-            var cachedEventInvitationsList = (await _redisService.GetUserEventInvitationsByUsername(username)).ToList();
+            // Get user pending invitations from cache
+            string userInvitationsKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(username);
+            var cachedEventInvitationsList = (await _redisService.GetAllAsync<CachedEventInvitation>(userInvitationsKey)).ToList();
 
             if (cachedEventInvitationsList.Any())
             {
@@ -258,6 +271,7 @@ public class InvitationService : IInvitationService
                 return CommonResponses.SuccessResponse.OkResponse(eventInvitationResponses);
             }
 
+            // Get user pending invitations from database
             var userEventsPendingApprovalList = await _eventInvitationRepository.GetUserInvitationsPendingApproval(username);
 
             return CommonResponses.SuccessResponse

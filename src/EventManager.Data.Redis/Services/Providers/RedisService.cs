@@ -36,62 +36,71 @@ public class RedisService : IRedisService
         }
     }
 
-    public async Task<bool> CacheNewUserEventInvitation(CachedEventInvitation invitation)
+    public async Task<bool> AddToHashSetAsync<T>(T value, string key, string hashField)
     {
         try
         {
-            string invitationsKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(invitation.Username);
-            bool cachedSuccessfully = await _connectionMultiplexer.GetDatabase()
-                .HashSetAsync(
-                    key: invitationsKey, 
-                    hashField: invitation.EventId,
-                    value: JsonConvert.SerializeObject(invitation));
-            
-            return cachedSuccessfully;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "An error occured caching user event invitations by username:{username}\n{user}", 
-                invitation.Username, JsonConvert.SerializeObject(invitation, Formatting.Indented));
-            
-            return false;
-        }
-    }
-
-    public async Task<bool> DeleteInvitation(string username, string eventId)
-    {
-        try
-        {
-            string invitationsKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(username);
-            bool deletedSuccessfully = await _connectionMultiplexer.GetDatabase()
-                .HashDeleteAsync(
-                    key: invitationsKey,
-                    hashField: eventId);
-            
-            return deletedSuccessfully;
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "An error occured deleting accepted user event invitations by username");
-            
-            return false;
-        }
-    }
-
-    public async Task<bool> IsUserAlreadyInvited(string username, string eventId)
-    {
-        try
-        {
-            string invitationsKey = RedisConstants.GetUserInvitationsRedisKeyByUsername(username);
             return await _connectionMultiplexer.GetDatabase()
-                .HashExistsAsync(invitationsKey, eventId);
+                .HashSetAsync(
+                    key: key, 
+                    hashField: hashField,
+                    value: JsonConvert.SerializeObject(value));
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "An error occured checking if user:{username} has already been invited an event:{eventId}",
-                username, eventId);
+            _logger.LogError(e, 
+                "An error occured adding value to hash set with key:{key} and field:{field}\nValue:{value}",
+                key, hashField, JsonConvert.SerializeObject(value, Formatting.Indented));
 
             return false;
+        }
+    }
+
+    public async Task<bool> DeleteFromHashSetAsync(string key, string hashField)
+    {
+        try
+        {
+            return await _connectionMultiplexer.GetDatabase()
+                .HashDeleteAsync(
+                    key: key,
+                    hashField: hashField);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "An error occured deleting value from hash set");
+            return false;
+        }
+    }
+
+    public async Task<bool> HashExistsAsync(string key, string hashField)
+    {
+        try
+        {
+            return await _connectionMultiplexer.GetDatabase()
+                .HashExistsAsync(key, hashField);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "An error occured checking if hashSet:{key} contains hashField:{hashField}",
+                key, hashField);
+
+            return false;
+        }
+    }
+
+    public async Task<IEnumerable<T>> GetAllAsync<T>(string key)
+    {
+        try
+        {
+            var invitationsRedisValue = await _connectionMultiplexer.GetDatabase().HashGetAllAsync(key);
+
+            return invitationsRedisValue
+                .Select(x => JsonConvert.DeserializeObject<T>(x.Value));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "An error occured getting all values in hash set:{key}", key);
+            return Array.Empty<T>();
         }
     }
 }

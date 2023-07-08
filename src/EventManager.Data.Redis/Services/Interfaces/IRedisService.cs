@@ -1,11 +1,9 @@
-﻿using EventManager.Data.Redis.Models;
-
-namespace EventManager.Data.Redis.Services.Interfaces;
+﻿namespace EventManager.Data.Redis.Services.Interfaces;
 
 public interface IRedisService
 {
-    Task<IEnumerable<CachedEventInvitation>> GetUserEventInvitationsByUsername(string username);
-    Task<bool> CacheNewUserEventInvitation(CachedEventInvitation invitation);
-    Task<bool> DeleteInvitation(string username, string eventId);
-    Task<bool> IsUserAlreadyInvited(string username, string eventId);
+    Task<bool> AddToHashSetAsync<T>(T value, string key, string hashField);
+    Task<bool> DeleteFromHashSetAsync(string key, string hashField);
+    Task<bool> HashExistsAsync(string key, string hashField);
+    Task<IEnumerable<T>> GetAllAsync<T>(string key);
 }
