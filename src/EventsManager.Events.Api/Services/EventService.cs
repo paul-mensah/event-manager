@@ -153,7 +153,7 @@ public sealed class EventService : IEventService
             bool isDeleted = await _elasticsearchService.DeleteAsync<EventResponse>(id);
 
             return isDeleted
-                ? CommonResponses.SuccessResponse.OkResponse(new EmptyResponse(), "Deleted successfully")
+                ? CommonResponses.SuccessResponse.DeletedResponse()
                 : CommonResponses.ErrorResponse.FailedDependencyErrorResponse<EmptyResponse>();
         }
         catch (Exception e)
