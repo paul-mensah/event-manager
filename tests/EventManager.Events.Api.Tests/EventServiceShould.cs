@@ -98,7 +98,4 @@ public class EventServiceShould : IClassFixture<TestFixture>
         response.Message.Should().Be(mockResponse.Message);
         response.Data.Should().BeNull();
     }
-
-    
-    
 }
