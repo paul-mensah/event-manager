@@ -1,0 +1,1615 @@
+{
+	"info": {
+		"_postman_id": "4de80e54-b71e-4ee5-9e4b-261ae987e117",
+		"name": "Events Manager Invitations Api",
+		"description": "Events Manager Invitations Api\n\nContact Support:\n Name: Paul Mensah\n Email: paulmensah1409@gmail.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api/events/invitations",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get invitation by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "consequat veniam",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": 65977967,\n  \"message\": \"reprehenderit sit pariatur enim\",\n  \"data\": {\n    \"id\": \"quis\",\n    \"username\": \"ipsum ea\",\n    \"email\": \"irure laborum\",\n    \"name\": \"laboris magna esse Duis\",\n    \"photoUrl\": \"cupidatat do dolore ipsum\",\n    \"eventId\": \"sit\",\n    \"title\": \"dolor elit laborum fugiat adipisicing\",\n    \"description\": \"cillum \",\n    \"invitedBy\": \"velit cupidatat consectetur et\",\n    \"isAccepted\": true,\n    \"acceptedDate\": \"1958-07-12T03:52:29.492Z\",\n    \"createdAt\": \"1955-12-18T15:25:26.551Z\",\n    \"updatedAt\": \"1959-10-27T23:55:47.020Z\"\n  }\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Client Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Failed Dependency (WebDAV) (RFC 4918)",
+									"code": 424,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete invitation by id",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "consequat veniam",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Client Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Failed Dependency (WebDAV) (RFC 4918)",
+									"code": 424,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Server Error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "Decline invitation by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations/:id/decline",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations",
+										":id",
+										"decline"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "consequat veniam",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/decline",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"decline"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": 65977967,\n  \"message\": \"reprehenderit sit pariatur enim\",\n  \"data\": {\n    \"id\": \"quis\",\n    \"username\": \"ipsum ea\",\n    \"email\": \"irure laborum\",\n    \"name\": \"laboris magna esse Duis\",\n    \"photoUrl\": \"cupidatat do dolore ipsum\",\n    \"eventId\": \"sit\",\n    \"title\": \"dolor elit laborum fugiat adipisicing\",\n    \"description\": \"cillum \",\n    \"invitedBy\": \"velit cupidatat consectetur et\",\n    \"isAccepted\": true,\n    \"acceptedDate\": \"1958-07-12T03:52:29.492Z\",\n    \"createdAt\": \"1955-12-18T15:25:26.551Z\",\n    \"updatedAt\": \"1959-10-27T23:55:47.020Z\"\n  }\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/decline",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"decline"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Conflict",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/decline",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"decline"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Client Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/decline",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"decline"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Failed Dependency (WebDAV) (RFC 4918)",
+									"code": 424,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/decline",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"decline"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								}
+							]
+						},
+						{
+							"name": "Accept invitation by id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations/:id/accept",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations",
+										":id",
+										"accept"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "consequat veniam",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/accept",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"accept"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": 65977967,\n  \"message\": \"reprehenderit sit pariatur enim\",\n  \"data\": {\n    \"id\": \"quis\",\n    \"username\": \"ipsum ea\",\n    \"email\": \"irure laborum\",\n    \"name\": \"laboris magna esse Duis\",\n    \"photoUrl\": \"cupidatat do dolore ipsum\",\n    \"eventId\": \"sit\",\n    \"title\": \"dolor elit laborum fugiat adipisicing\",\n    \"description\": \"cillum \",\n    \"invitedBy\": \"velit cupidatat consectetur et\",\n    \"isAccepted\": true,\n    \"acceptedDate\": \"1958-07-12T03:52:29.492Z\",\n    \"createdAt\": \"1955-12-18T15:25:26.551Z\",\n    \"updatedAt\": \"1959-10-27T23:55:47.020Z\"\n  }\n}"
+								},
+								{
+									"name": "Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/accept",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"accept"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Conflict",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/accept",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"accept"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Conflict",
+									"code": 409,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Client Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/accept",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"accept"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Failed Dependency (WebDAV) (RFC 4918)",
+									"code": 424,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								},
+								{
+									"name": "Server Error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/api/events/invitations/:id/accept",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"api",
+												"events",
+												"invitations",
+												":id",
+												"accept"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "consequat veniam",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create event invitation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"iq9rrAVmbXX@vPtcJ.mmbm\",\n  \"eventId\": \"Duis Except\",\n  \"invitedBy\": \"velit\",\n  \"name\": \"ut qui\",\n  \"photoUrl\": \"dolor ad deserunt\",\n  \"username\": \"ullamco nisi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/events/invitations",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"invitations"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"iq9rrAVmbXX@vPtcJ.mmbm\",\n  \"eventId\": \"Duis Except\",\n  \"invitedBy\": \"velit\",\n  \"name\": \"ut qui\",\n  \"photoUrl\": \"dolor ad deserunt\",\n  \"username\": \"ullamco nisi\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": 65977967,\n  \"message\": \"reprehenderit sit pariatur enim\",\n  \"data\": {\n    \"id\": \"quis\",\n    \"username\": \"ipsum ea\",\n    \"email\": \"irure laborum\",\n    \"name\": \"laboris magna esse Duis\",\n    \"photoUrl\": \"cupidatat do dolore ipsum\",\n    \"eventId\": \"sit\",\n    \"title\": \"dolor elit laborum fugiat adipisicing\",\n    \"description\": \"cillum \",\n    \"invitedBy\": \"velit cupidatat consectetur et\",\n    \"isAccepted\": true,\n    \"acceptedDate\": \"1958-07-12T03:52:29.492Z\",\n    \"createdAt\": \"1955-12-18T15:25:26.551Z\",\n    \"updatedAt\": \"1959-10-27T23:55:47.020Z\"\n  }\n}"
+						},
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"iq9rrAVmbXX@vPtcJ.mmbm\",\n  \"eventId\": \"Duis Except\",\n  \"invitedBy\": \"velit\",\n  \"name\": \"ut qui\",\n  \"photoUrl\": \"dolor ad deserunt\",\n  \"username\": \"ullamco nisi\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+						},
+						{
+							"name": "Client Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"iq9rrAVmbXX@vPtcJ.mmbm\",\n  \"eventId\": \"Duis Except\",\n  \"invitedBy\": \"velit\",\n  \"name\": \"ut qui\",\n  \"photoUrl\": \"dolor ad deserunt\",\n  \"username\": \"ullamco nisi\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations"
+									]
+								}
+							},
+							"status": "Failed Dependency (WebDAV) (RFC 4918)",
+							"code": 424,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+						},
+						{
+							"name": "Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"iq9rrAVmbXX@vPtcJ.mmbm\",\n  \"eventId\": \"Duis Except\",\n  \"invitedBy\": \"velit\",\n  \"name\": \"ut qui\",\n  \"photoUrl\": \"dolor ad deserunt\",\n  \"username\": \"ullamco nisi\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all invitations with filter",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/events/invitations?Username=consequat veniam&Email=consequat veniam&Name=consequat veniam&EventId=consequat veniam&Title=consequat veniam&InvitedBy=consequat veniam&IsAccepted=true&AcceptedDate=1971-03-11T18:17:23.385Z&PageSize=49&CurrentPage=1407461572&OrderBy=consequat veniam",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"invitations"
+							],
+							"query": [
+								{
+									"key": "Username",
+									"value": "consequat veniam"
+								},
+								{
+									"key": "Email",
+									"value": "consequat veniam"
+								},
+								{
+									"key": "Name",
+									"value": "consequat veniam"
+								},
+								{
+									"key": "EventId",
+									"value": "consequat veniam"
+								},
+								{
+									"key": "Title",
+									"value": "consequat veniam"
+								},
+								{
+									"key": "InvitedBy",
+									"value": "consequat veniam"
+								},
+								{
+									"key": "IsAccepted",
+									"value": "true"
+								},
+								{
+									"key": "AcceptedDate",
+									"value": "1971-03-11T18:17:23.385Z"
+								},
+								{
+									"key": "PageSize",
+									"value": "49"
+								},
+								{
+									"key": "CurrentPage",
+									"value": "1407461572"
+								},
+								{
+									"key": "OrderBy",
+									"value": "consequat veniam"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations?Username=consequat veniam&Email=consequat veniam&Name=consequat veniam&EventId=consequat veniam&Title=consequat veniam&InvitedBy=consequat veniam&IsAccepted=true&AcceptedDate=1971-03-11T18:17:23.385Z&PageSize=49&CurrentPage=1407461572&OrderBy=consequat veniam",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations"
+									],
+									"query": [
+										{
+											"key": "Username",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Email",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Name",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "EventId",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Title",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "InvitedBy",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "IsAccepted",
+											"value": "true"
+										},
+										{
+											"key": "AcceptedDate",
+											"value": "1971-03-11T18:17:23.385Z"
+										},
+										{
+											"key": "PageSize",
+											"value": "49"
+										},
+										{
+											"key": "CurrentPage",
+											"value": "1407461572"
+										},
+										{
+											"key": "OrderBy",
+											"value": "consequat veniam"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -36002178,\n  \"message\": \"cillum tempor\",\n  \"data\": {\n    \"currentPage\": -74635846,\n    \"pageSize\": 99599255,\n    \"totalRecords\": -18026162,\n    \"totalPages\": 98899080,\n    \"data\": [\n      {\n        \"id\": \"proident minim veniam\",\n        \"username\": \"Duis veniam ut sint\",\n        \"email\": \"dolor ex\",\n        \"name\": \"eiusmod sed Duis\",\n        \"photoUrl\": \"mollit proident\",\n        \"eventId\": \"ex\",\n        \"title\": \"\",\n        \"description\": \"enim commodo\",\n        \"invitedBy\": \"Excepteur dolor\",\n        \"isAccepted\": true,\n        \"acceptedDate\": \"1972-06-06T08:13:12.225Z\",\n        \"createdAt\": \"1946-02-18T03:25:58.900Z\",\n        \"updatedAt\": \"1949-06-26T22:44:20.819Z\"\n      },\n      {\n        \"id\": \"commodo eu nostrud\",\n        \"username\": \"nostrud eiusmod in\",\n        \"email\": \"officia adipisicing inc\",\n        \"name\": \"laborum\",\n        \"photoUrl\": \"ullamco eu cillum\",\n        \"eventId\": \"nulla\",\n        \"title\": \"culpa incididunt cupidatat elit dolore\",\n        \"description\": \"magna\",\n        \"invitedBy\": \"ipsum\",\n        \"isAccepted\": false,\n        \"acceptedDate\": \"1943-09-15T22:30:14.550Z\",\n        \"createdAt\": \"2011-10-12T03:09:33.471Z\",\n        \"updatedAt\": \"1968-07-28T03:34:48.900Z\"\n      }\n    ]\n  }\n}"
+						},
+						{
+							"name": "Client Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations?Username=consequat veniam&Email=consequat veniam&Name=consequat veniam&EventId=consequat veniam&Title=consequat veniam&InvitedBy=consequat veniam&IsAccepted=true&AcceptedDate=1971-03-11T18:17:23.385Z&PageSize=49&CurrentPage=1407461572&OrderBy=consequat veniam",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations"
+									],
+									"query": [
+										{
+											"key": "Username",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Email",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Name",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "EventId",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Title",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "InvitedBy",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "IsAccepted",
+											"value": "true"
+										},
+										{
+											"key": "AcceptedDate",
+											"value": "1971-03-11T18:17:23.385Z"
+										},
+										{
+											"key": "PageSize",
+											"value": "49"
+										},
+										{
+											"key": "CurrentPage",
+											"value": "1407461572"
+										},
+										{
+											"key": "OrderBy",
+											"value": "consequat veniam"
+										}
+									]
+								}
+							},
+							"status": "Failed Dependency (WebDAV) (RFC 4918)",
+							"code": 424,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+						},
+						{
+							"name": "Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations?Username=consequat veniam&Email=consequat veniam&Name=consequat veniam&EventId=consequat veniam&Title=consequat veniam&InvitedBy=consequat veniam&IsAccepted=true&AcceptedDate=1971-03-11T18:17:23.385Z&PageSize=49&CurrentPage=1407461572&OrderBy=consequat veniam",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations"
+									],
+									"query": [
+										{
+											"key": "Username",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Email",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Name",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "EventId",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "Title",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "InvitedBy",
+											"value": "consequat veniam"
+										},
+										{
+											"key": "IsAccepted",
+											"value": "true"
+										},
+										{
+											"key": "AcceptedDate",
+											"value": "1971-03-11T18:17:23.385Z"
+										},
+										{
+											"key": "PageSize",
+											"value": "49"
+										},
+										{
+											"key": "CurrentPage",
+											"value": "1407461572"
+										},
+										{
+											"key": "OrderBy",
+											"value": "consequat veniam"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Get user invitations that are pending approval",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/events/invitations/:username/approvals/pending",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"events",
+								"invitations",
+								":username",
+								"approvals",
+								"pending"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "consequat veniam",
+									"description": "(Required) "
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations/:username/approvals/pending",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations",
+										":username",
+										"approvals",
+										"pending"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "consequat veniam",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": 80377310,\n  \"message\": \"aliquip dolore\",\n  \"data\": [\n    {\n      \"id\": \"nisi dolor sunt ut in\",\n      \"username\": \"Lorem nulla dolore officia nisi\",\n      \"email\": \"in fugiat Ut\",\n      \"name\": \"fugiat\",\n      \"photoUrl\": \"pariatur consectetur irure dolor est\",\n      \"eventId\": \"\",\n      \"title\": \"incididunt amet ipsum\",\n      \"description\": \"ull\",\n      \"invitedBy\": \"irure occaecat cillum veniam\",\n      \"isAccepted\": true,\n      \"acceptedDate\": \"1948-08-01T08:41:18.630Z\",\n      \"createdAt\": \"1998-05-29T16:01:50.692Z\",\n      \"updatedAt\": \"1997-11-14T06:37:03.836Z\"\n    },\n    {\n      \"id\": \"\",\n      \"username\": \"cillum Excepteur\",\n      \"email\": \"culpa \",\n      \"name\": \"laboris quis Ut\",\n      \"photoUrl\": \"ex Ut\",\n      \"eventId\": \"enim sint\",\n      \"title\": \"esse dolor cillum qui\",\n      \"description\": \"elit culpa\",\n      \"invitedBy\": \"elit eiusmod et\",\n      \"isAccepted\": false,\n      \"acceptedDate\": \"1962-02-21T13:51:23.977Z\",\n      \"createdAt\": \"2004-11-15T10:11:59.496Z\",\n      \"updatedAt\": \"1980-06-16T00:27:57.243Z\"\n    }\n  ]\n}"
+						},
+						{
+							"name": "Client Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations/:username/approvals/pending",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations",
+										":username",
+										"approvals",
+										"pending"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "consequat veniam",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Failed Dependency (WebDAV) (RFC 4918)",
+							"code": 424,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+						},
+						{
+							"name": "Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/events/invitations/:username/approvals/pending",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"events",
+										"invitations",
+										":username",
+										"approvals",
+										"pending"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "consequat veniam",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": -23145445,\n  \"message\": \"do est in elit\",\n  \"data\": {}\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/",
+			"type": "string"
+		}
+	]
+}

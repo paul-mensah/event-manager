@@ -28,15 +28,12 @@ public static class BuilderExtension
         // Check if there are pending migrations and execute
         RunMigrations(application.Services).GetAwaiter().GetResult();
         
-        // Configure the HTTP request pipeline.
-        if (application.Environment.IsDevelopment())
+        application.UseSwagger();
+        application.UseSwaggerUI(s => 
         {
-            application.UseSwagger();
-            application.UseSwaggerUI(s => 
-            {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Events Manager Invitations Api");
-            });
-        }
+            s.SwaggerEndpoint("/swagger/v1/swagger.json", "Events Manager Invitations Api");
+        });
+        
 
         application.UseCors(x => x
             .AllowAnyMethod()
@@ -46,7 +43,6 @@ public static class BuilderExtension
 
         application.UseRouting();
         application.ConfigureGlobalHandler(application.Logger);
-        application.UseHttpsRedirection();
         application.UseAuthorization();
         application.MapControllers();
 

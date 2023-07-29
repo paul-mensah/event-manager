@@ -4,6 +4,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{22435093-23F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3DFA251E-B012-40DE-9DAF-070B5D853578}"
 	ProjectSection(SolutionItems) = preProject
+		docs\Events Manager Events Api.postman_collection.json = docs\Events Manager Events Api.postman_collection.json
+		docs\Events Manager Invitations Api.postman_collection.json = docs\Events Manager Invitations Api.postman_collection.json
 		docs\docker-compose.yml = docs\docker-compose.yml
 	EndProjectSection
 EndProject

@@ -30,7 +30,7 @@ public sealed class EventService : IEventService
         {
             var searchQuery = new TermQuery
             {
-                Field = "participants.Username.keyword",
+                Field = "participants.username.keyword",
                 Value = filter.ParticipantUsername
             } && new TermQuery
             {
@@ -38,7 +38,7 @@ public sealed class EventService : IEventService
                 Value = filter.CreatedBy
             } && new TermQuery
             {
-                Field = "location.ZipCode.keyword",
+                Field = "location.zipCode.keyword",
                 Value = filter.ZipCode
             } && new DateRangeQuery
             {
@@ -61,10 +61,10 @@ public sealed class EventService : IEventService
             
             if (!string.IsNullOrEmpty(filter.ParticipantName))
             {
-                searchQuery = searchQuery && new MatchQuery
+                searchQuery = searchQuery && new WildcardQuery
                 {
-                    Field = "participants.Name",
-                    Query = filter.ParticipantName
+                    Field = "participants.name",
+                    Value = $"*{filter.ParticipantName}*"
                 };
             }
             

@@ -23,15 +23,11 @@ public static class BuilderExtension
 
     public static void RunApplication(this WebApplication application)
     {
-        // Configure the HTTP request pipeline.
-        if (application.Environment.IsDevelopment())
+        application.UseSwagger();
+        application.UseSwaggerUI(s => 
         {
-            application.UseSwagger();
-            application.UseSwaggerUI(s => 
-            {
-                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Events Manager Events Api");
-            });
-        }
+            s.SwaggerEndpoint("/swagger/v1/swagger.json", "Events Manager Events Api");
+        });
 
         application.UseCors(x => x
             .AllowAnyMethod()
@@ -41,7 +37,6 @@ public static class BuilderExtension
 
         application.UseRouting();
         application.ConfigureGlobalHandler(application.Logger);
-        application.UseHttpsRedirection();
         application.UseAuthorization();
         application.MapControllers();
 

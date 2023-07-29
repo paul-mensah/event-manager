@@ -1,6 +1,7 @@
-# Events Manager API
+# Events Manager API (Microservices)
 
-This is an API to manage events with participants and developed using .NET 6, Redis, and Elasticsearch
+This is an API to manage events with participants and developed using .NET 6, Redis, and Elasticsearch and MySQL. 
+This project contains 2 services; `EventsManager.Events.Api` and `EventsManager.Events.Api`
 
 ## Prerequirements
 * Jetbrains Rider or Visual Studio 2019 (or higher)

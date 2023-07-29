@@ -8,6 +8,7 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
         <UserSecretsId>f7c55bd8-86b6-4c35-89c9-b3f5a2b5a335</UserSecretsId>
         <DockerfileContext>..\..</DockerfileContext>
+        <EnableSdkContainerSupport>true</EnableSdkContainerSupport>
     </PropertyGroup>
 
     <ItemGroup>
@@ -23,12 +24,6 @@
     <ItemGroup>
       <ProjectReference Include="..\EventManager.Core\EventManager.Core.csproj" />
       <ProjectReference Include="..\EventManager.Data.Elasticsearch\EventManager.Data.Elasticsearch.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
     </ItemGroup>
 
 </Project>
