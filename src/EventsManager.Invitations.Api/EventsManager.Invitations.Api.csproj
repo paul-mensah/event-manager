@@ -11,30 +11,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.4">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.3.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.0" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="3.1.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.3.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.3.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.3.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="3.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\EventManager.Core\EventManager.Core.csproj" />
-      <ProjectReference Include="..\EventManager.Data.Sql\EventManager.Data.Sql.csproj" />
+        <ProjectReference Include="..\EventManager.Core\EventManager.Core.csproj"/>
+        <ProjectReference Include="..\EventManager.Data.Sql\EventManager.Data.Sql.csproj"/>
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
 
 </Project>

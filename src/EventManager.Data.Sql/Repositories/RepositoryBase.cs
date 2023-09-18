@@ -1,11 +1,10 @@
 ﻿using EventManager.Core.Domain;
 using EventManager.Core.Repositories;
 using EventManager.Data.Sql.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventManager.Data.Sql.Repositories;
 
-public class RepositoryBase<T> : IRepositoryBase<T> where T: EntityBase
+public class RepositoryBase<T> : IRepositoryBase<T> where T : EntityBase
 {
     private readonly ApplicationDatabaseContext _dbContext;
 

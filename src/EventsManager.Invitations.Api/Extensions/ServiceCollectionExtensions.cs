@@ -26,17 +26,18 @@ public static class ServiceCollectionExtensions
                     Email = "paulmensah1409@gmail.com"
                 }
             });
-            
+
             c.ResolveConflictingActions(resolver => resolver.First());
             c.EnableAnnotations();
-            
+
             string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath);
         });
     }
 
-    public static void AddCustomServicesAndConfigurations(this IServiceCollection services, IConfiguration configuration)
+    public static void AddCustomServicesAndConfigurations(this IServiceCollection services,
+        IConfiguration configuration)
     {
         // Services
         services.AddMySqlDatabase(configuration);
@@ -44,6 +45,5 @@ public static class ServiceCollectionExtensions
         services.AddRedisCache(c => configuration.GetSection(nameof(RedisConfig)).Bind(c));
         services.AddScoped<IProxyHttpService, ProxyHttpService>();
         services.AddScoped<IInvitationService, InvitationService>();
-
     }
 }

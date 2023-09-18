@@ -5,8 +5,6 @@ using EventManager.Events.Api.Tests.Setup;
 using EventsManager.Events.Api.Services;
 using FluentAssertions;
 using Mapster;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -17,11 +15,10 @@ public class EventServiceShould : IClassFixture<TestFixture>
     private readonly Mock<IElasticsearchService> _elasticSearchServiceMock;
     private readonly EventService _eventService;
 
-    public EventServiceShould(TestFixture fixture)
+    public EventServiceShould()
     {
-        var logger = fixture.ServiceProvider.GetRequiredService<ILogger<EventService>>();
         _elasticSearchServiceMock = new Mock<IElasticsearchService>();
-        _eventService = new EventService(_elasticSearchServiceMock.Object, logger);
+        _eventService = new EventService(_elasticSearchServiceMock.Object);
     }
 
     [Fact]
@@ -44,7 +41,7 @@ public class EventServiceShould : IClassFixture<TestFixture>
         response.Data.Id.Should().Be(testEvent.Id);
         response.Data.Participants.Count.Should().Be(testEvent.Participants.Count);
     }
-    
+
     [Fact]
     public async Task Return_400_BadRequest_Status_When_An_Id_Of_An_Event_Which_Does_Not_Exist_Is_Provided()
     {
@@ -52,7 +49,7 @@ public class EventServiceShould : IClassFixture<TestFixture>
         var mockResponse = CommonResponses.ErrorResponse.NotFoundErrorResponse<EventResponse>("Event not found");
 
         _elasticSearchServiceMock.Setup(x => x.GetByIdAsync<Event>(It.IsAny<string>()))
-            .ReturnsAsync( () => null!);
+            .ReturnsAsync(() => null!);
 
         // Act
         BaseResponse<EventResponse> response = await _eventService.GetEventById(Guid.NewGuid().ToString("N"));
@@ -62,7 +59,7 @@ public class EventServiceShould : IClassFixture<TestFixture>
         response.Message.Should().Be(mockResponse.Message);
         response.Data.Should().BeNull();
     }
-    
+
     [Fact]
     public async Task Return_200_OK_Status_When_An_Existing_Event_Is_Deleted()
     {
@@ -80,7 +77,7 @@ public class EventServiceShould : IClassFixture<TestFixture>
         response.Message.Should().Be(mockResponse.Message);
         response.Data.Should().BeNull();
     }
-    
+
     [Fact]
     public async Task Return_424_FailedDependency_Status_When_Deleting_A_Non_Existing_Event()
     {

@@ -11,9 +11,9 @@ public static class ServiceExtensions
     public static void AddMySqlDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ApplicationDatabaseContext>(options =>
-            {
-                options.UseMySQL(configuration.GetConnectionString("DbConnection") ?? 
-                                 throw new InvalidOperationException());
-            }, ServiceLifetime.Transient).AddUnitOfWork<ApplicationDatabaseContext>();
+        {
+            options.UseMySQL(configuration.GetConnectionString("DbConnection") ??
+                             throw new InvalidOperationException());
+        }, ServiceLifetime.Transient).AddUnitOfWork<ApplicationDatabaseContext>();
     }
 }

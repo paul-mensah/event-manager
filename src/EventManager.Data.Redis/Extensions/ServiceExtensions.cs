@@ -13,10 +13,10 @@ public static class ServiceExtensions
 
         services.Configure(redisConfig);
 
-        var redisConfiguration = new RedisConfig();
+        RedisConfig redisConfiguration = new();
         redisConfig.Invoke(redisConfiguration);
-        
-        var connectionMultiplexer = ConnectionMultiplexer.Connect(new ConfigurationOptions
+
+        ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(new ConfigurationOptions
         {
             EndPoints = { redisConfiguration.BaseUrl },
             AllowAdmin = true,

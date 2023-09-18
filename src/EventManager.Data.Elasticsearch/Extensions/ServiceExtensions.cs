@@ -7,22 +7,24 @@ namespace EventManager.Data.Elasticsearch.Extensions;
 
 public static class ServiceExtensions
 {
-    public static void AddElasticSearch(this IServiceCollection services, Action<ElasticsearchConfig> elasticsearchConfig)
+    public static void AddElasticSearch(this IServiceCollection services,
+        Action<ElasticsearchConfig> elasticsearchConfig)
     {
         if (services is null) throw new ArgumentNullException(nameof(services));
 
         services.Configure(elasticsearchConfig);
 
-        var elasticsearchConfiguration = new ElasticsearchConfig();
+        ElasticsearchConfig elasticsearchConfiguration = new();
         elasticsearchConfig.Invoke(elasticsearchConfiguration);
 
-        var pool = new SingleNodeConnectionPool(new Uri(elasticsearchConfiguration.Url));
-        var connectionSettings = new ConnectionSettings(pool).DefaultIndex(elasticsearchConfiguration.Index);
+        SingleNodeConnectionPool pool = new(new Uri(elasticsearchConfiguration.Url));
+        ConnectionSettings connectionSettings =
+            new ConnectionSettings(pool).DefaultIndex(elasticsearchConfiguration.Index);
         connectionSettings.PrettyJson();
         connectionSettings.DisableDirectStreaming();
-        
-        var elasticClient = new ElasticClient(connectionSettings);
-        var elasticLowLevelClient = new ElasticLowLevelClient(connectionSettings);
+
+        ElasticClient elasticClient = new(connectionSettings);
+        ElasticLowLevelClient elasticLowLevelClient = new(connectionSettings);
 
         services.AddSingleton<IElasticClient>(elasticClient);
         services.AddSingleton<IElasticLowLevelClient>(elasticLowLevelClient);

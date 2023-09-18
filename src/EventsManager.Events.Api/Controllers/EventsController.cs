@@ -9,7 +9,6 @@ namespace EventsManager.Events.Api.Controllers;
 
 [ApiController]
 [Route("api/events")]
-[Consumes(MediaTypeNames.Application.Json)]
 [Produces(MediaTypeNames.Application.Json)]
 [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponse<EmptyResponse>))]
 [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(BaseResponse<EmptyResponse>))]
@@ -23,7 +22,7 @@ public class EventsController : ControllerBase
     }
 
     /// <summary>
-    /// Get event by id
+    ///     Get event by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -35,9 +34,9 @@ public class EventsController : ControllerBase
         var response = await _eventService.GetEventById(id);
         return StatusCode(response.Code, response);
     }
-    
+
     /// <summary>
-    /// Get events by filter
+    ///     Get events by filter
     /// </summary>
     /// <returns></returns>
     [HttpGet]
@@ -49,7 +48,7 @@ public class EventsController : ControllerBase
     }
 
     /// <summary>
-    /// Delete event
+    ///     Delete event
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -62,11 +61,12 @@ public class EventsController : ControllerBase
     }
 
     /// <summary>
-    /// Create event
+    ///     Create event
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost]
+    [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(BaseResponse<EventResponse>))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse<EventResponse>))]
     public async Task<IActionResult> CreateEvent([FromBody] CreateEventRequest request)
@@ -76,23 +76,25 @@ public class EventsController : ControllerBase
     }
 
     /// <summary>
-    /// Add participant to event
+    ///     Add participant to event
     /// </summary>
     /// <param name="id"></param>
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPatch("{id:required}/participant")]
+    [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResponse<EventResponse>))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(BaseResponse<EmptyResponse>))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseResponse<EmptyResponse>))]
-    public async Task<IActionResult> AddParticipantToEvent([FromRoute] string id, [FromBody] EventParticipantRequest request)
+    public async Task<IActionResult> AddParticipantToEvent([FromRoute] string id,
+        [FromBody] EventParticipantRequest request)
     {
         var response = await _eventService.AddParticipant(id, request);
         return StatusCode(response.Code, response);
     }
-    
+
     /// <summary>
-    /// Remove participant from an event
+    ///     Remove participant from an event
     /// </summary>
     /// <param name="id"></param>
     /// <param name="username"></param>

@@ -9,7 +9,6 @@ namespace EventsManager.Invitations.Api.Controllers;
 
 [ApiController]
 [Route("api/events/invitations")]
-[Consumes(MediaTypeNames.Application.Json)]
 [Produces(MediaTypeNames.Application.Json)]
 [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(BaseResponse<EmptyResponse>))]
 [ProducesResponseType(StatusCodes.Status424FailedDependency, Type = typeof(BaseResponse<EmptyResponse>))]
@@ -23,11 +22,12 @@ public class InvitationsController : ControllerBase
     }
 
     /// <summary>
-    /// Create event invitation
+    ///     Create event invitation
     /// </summary>
     /// <param name="request"></param>
     /// <returns></returns>
     [HttpPost]
+    [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BaseResponse<EmptyResponse>))]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(BaseResponse<EventInvitationResponse>))]
     public async Task<IActionResult> CreateEventInvitation([FromBody] EventInvitationRequest request)
@@ -37,7 +37,7 @@ public class InvitationsController : ControllerBase
     }
 
     /// <summary>
-    /// Get invitation by id
+    ///     Get invitation by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -49,51 +49,48 @@ public class InvitationsController : ControllerBase
         var response = await _invitationService.GetInvitationById(id);
         return StatusCode(response.Code, response);
     }
-    
+
     /// <summary>
-    /// Get all invitations with filter
+    ///     Get all invitations with filter
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResponse<PaginatedResponse<EventInvitationResponse>>))]
+    [ProducesResponseType(StatusCodes.Status200OK,
+        Type = typeof(BaseResponse<PaginatedResponse<EventInvitationResponse>>))]
     public async Task<IActionResult> GetEventInvitations([FromQuery] EventInvitationsFilter filter)
     {
         var response = await _invitationService.GetEventInvitations(filter);
         return StatusCode(response.Code, response);
     }
-    
+
     /// <summary>
-    /// Decline invitation by id
+    ///     Accept or decline invitation
     /// </summary>
     /// <param name="id"></param>
+    /// <param name="request"></param>
     /// <returns></returns>
-    [HttpGet("{id:required}/decline")]
+    [HttpPost("{id:required}/status")]
+    [Consumes(MediaTypeNames.Application.Json)]
+    [Produces(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseResponse<EmptyResponse>))]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResponse<EventInvitationResponse>))]
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(BaseResponse<EmptyResponse>))]
-    public async Task<IActionResult> DeclineInvitation([FromRoute] string id)
+    public async Task<IActionResult> DeclineInvitation([FromRoute] string id,
+        [FromBody] EventInvitationStatusRequest request)
     {
-        var response = await _invitationService.DeclineInvitation(id);
+        var response = request.Status.ToLower() switch
+        {
+            "accept" => await _invitationService.AcceptInvitation(id),
+            "decline" => await _invitationService.DeclineInvitation(id),
+            _ => CommonResponses.ErrorResponse.BadRequestResponse<EventInvitationResponse>(
+                "Incorrect invitation status")
+        };
+
         return StatusCode(response.Code, response);
     }
-    
+
     /// <summary>
-    /// Accept invitation by id
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    [HttpGet("{id:required}/accept")]
-    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(BaseResponse<EmptyResponse>))]
-    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(BaseResponse<EmptyResponse>))]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BaseResponse<EventInvitationResponse>))]
-    public async Task<IActionResult> AcceptInvitation([FromRoute] string id)
-    {
-        var response = await _invitationService.AcceptInvitation(id);
-        return StatusCode(response.Code, response);
-    }
-    
-    /// <summary>
-    /// Delete invitation by id
+    ///     Delete invitation by id
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -105,9 +102,9 @@ public class InvitationsController : ControllerBase
         var response = await _invitationService.DeleteInvitation(id);
         return StatusCode(response.Code, response);
     }
-    
+
     /// <summary>
-    /// Get user invitations that are pending approval
+    ///     Get user invitations that are pending approval
     /// </summary>
     /// <param name="username"></param>
     /// <returns></returns>
